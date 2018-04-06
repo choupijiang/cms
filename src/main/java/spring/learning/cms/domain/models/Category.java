@@ -1,20 +1,23 @@
-package spring.learning.cms.models;
-
-import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
+package spring.learning.cms.domain.models;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
+
 
 @Data
 @Entity
-@Table(name="category")
+@Table(name = "category")
 public class Category {
+
     @Id
     @GeneratedValue(generator = "system-uuid")
     @GenericGenerator(name = "system-uuid", strategy = "uuid2")
     String id;
+
     String name;
+
 }

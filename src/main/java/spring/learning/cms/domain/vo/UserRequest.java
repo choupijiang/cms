@@ -1,7 +1,7 @@
-package spring.learning.cms.vo;
+package spring.learning.cms.domain.vo;
 
 import lombok.Data;
-import spring.learning.cms.models.Role;
+import spring.learning.cms.domain.models.Role;
 
 @Data
 public class UserRequest {

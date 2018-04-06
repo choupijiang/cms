@@ -1,4 +1,4 @@
-package spring.learning.cms.models;
+package spring.learning.cms.domain.models;
 
 public enum Role {
     AUTHOR,

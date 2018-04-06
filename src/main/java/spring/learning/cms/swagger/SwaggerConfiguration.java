@@ -1,4 +1,4 @@
-package spring.learning.infra.swagger;
+package spring.learning.cms.swagger;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

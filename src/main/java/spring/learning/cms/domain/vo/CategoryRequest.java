@@ -1,4 +1,4 @@
-package spring.learning.cms.vo;
+package spring.learning.cms.domain.vo;
 
 
 import lombok.Data;

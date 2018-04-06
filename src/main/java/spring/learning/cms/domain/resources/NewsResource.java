@@ -1,14 +1,21 @@
-package spring.learning.cms.resources;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import spring.learning.cms.models.News;
-import spring.learning.cms.models.Review;
-import spring.learning.cms.vo.NewsRequest;
+package spring.learning.cms.domain.resources;
 
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import spring.learning.cms.domain.models.News;
+import spring.learning.cms.domain.models.Review;
+import spring.learning.cms.domain.vo.NewsRequest;
+
 
 @RestController
 @RequestMapping("/api/news")
@@ -21,7 +28,6 @@ public class NewsResource {
 
     @GetMapping
     public ResponseEntity<List<News>> findAll(){
-
         return ResponseEntity.ok(Arrays.asList(new News(),new News()));
     }
 
@@ -41,7 +47,7 @@ public class NewsResource {
     }
 
     @GetMapping(value = "/{id}/review/{userId}")
-    public ResponseEntity<Review> review(@PathVariable("id") String id, @PathVariable("userId") String userId){
+    public ResponseEntity<Review> review(@PathVariable("id") String id,@PathVariable("userId") String userId){
         return ResponseEntity.ok(new Review());
     }
 
@@ -49,4 +55,5 @@ public class NewsResource {
     public ResponseEntity<List<News>> revisedNews(){
         return ResponseEntity.ok(Arrays.asList(new News(),new News()));
     }
+
 }
