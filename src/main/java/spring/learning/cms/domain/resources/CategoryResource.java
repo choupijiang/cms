@@ -85,14 +85,5 @@ public class CategoryResource {
         return new ResponseEntity<>(this.categoryService.create(category), HttpStatus.OK);
     }
 
-    @GetMapping("/query")
-    @ApiOperation(value = "List categories by name with starting",notes = "List categories by name with starting")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200,message = "Categories found"),
-            @ApiResponse(code = 404,message = "Category not found")
-    })
-    public ResponseEntity<List<Category>> findByNameStartingWith(@RequestParam("name") String name){
-        return ResponseEntity.ok(this.categoryService.findByNameStartingWith(name));
-    }
 
 }

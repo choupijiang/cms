@@ -43,14 +43,7 @@ public class CategoryService {
     public List<Category> findAll() {
         return this.categoryRepository.findAll();
     }
-
-    public List<Category> findByName(String name) {
-        return this.categoryRepository.findByName(name);
-    }
-
-    public List<Category> findByNameStartingWith(String name) {
-        return this.categoryRepository.findByNameIgnoreCaseStartingWith(name);
-    }
+ 
 
     public Category findOne(String id) {
         final Optional<Category> category = this.categoryRepository.findById(id);

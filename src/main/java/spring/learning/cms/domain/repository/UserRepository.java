@@ -1,7 +1,7 @@
 package spring.learning.cms.domain.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import spring.learning.cms.domain.models.User;
 
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends MongoRepository<User, String> {
 }
