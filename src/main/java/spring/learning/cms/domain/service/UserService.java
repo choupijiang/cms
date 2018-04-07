@@ -1,6 +1,8 @@
 package spring.learning.cms.domain.service;
 
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import spring.learning.cms.domain.exceptions.UserNotFoundException;
 import spring.learning.cms.domain.models.User;
 import spring.learning.cms.domain.repository.UserRepository;
@@ -18,20 +20,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public User update(String id,UserRequest userRequest){
-        final Optional<User> user = this.userRepository.findById(id);
-        if(user.isPresent()){
-            final User userDB = user.get();
-            userDB.setIdentity(userRequest.getIdentity());
-            userDB.setName(userRequest.getName());
-            userDB.setRole(userRequest.getRole());
-            return this.userRepository.save(userDB);
-        }else {
-            throw new UserNotFoundException(id);
-        }
+    public Mono<User> update(String id, UserRequest userRequest){
+        return this.userRepository.findById(id).flatMap(user -> {
+            user.setIdentity(userRequest.getIdentity());
+            user.setName(userRequest.getName());
+            user.setRole(userRequest.getRole());
+            return this.userRepository.save(user);
+        });
     }
 
-    public User create(UserRequest userRequest){
+    public Mono<User> create(UserRequest userRequest) {
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setIdentity(userRequest.getIdentity());
@@ -40,22 +38,16 @@ public class UserService {
         return this.userRepository.save(user);
     }
 
-    public void delete(String id){
-        final Optional<User> user = this.userRepository.findById(id);
-        user.ifPresent(this.userRepository::delete);
+    public void delete(String id) {
+        this.userRepository.deleteById(id);
     }
 
-    public Iterable<User> findAll(){
+    public Flux<User> findAll() {
         return this.userRepository.findAll();
     }
 
-    public User findOne(String id){
-        final Optional<User> user = this.userRepository.findById(id);
-        if(user.isPresent()){
-            return user.get();
-        }else {
-            throw new UserNotFoundException(id);
-        }
+    public Mono<User> findOne(String id) {
+        return this.userRepository.findById(id);
     }
 
 }
