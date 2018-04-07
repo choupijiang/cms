@@ -40,7 +40,7 @@ public class CategoryResource {
             @ApiResponse(code = 404,message = "Category not found"),
     })
     public ResponseEntity<Category> findOne(@PathVariable("id") String id){
-        return ResponseEntity.ok(new Category());
+        return ResponseEntity.ok(this.categoryService.findOne(id));
     }
 
     @GetMapping

@@ -14,12 +14,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import spring.learning.cms.domain.models.News;
 import spring.learning.cms.domain.models.Review;
+import spring.learning.cms.domain.repository.NewsRepository;
+import spring.learning.cms.domain.service.NewsService;
 import spring.learning.cms.domain.vo.NewsRequest;
 
 
 @RestController
 @RequestMapping("/api/news")
 public class NewsResource {
+
+    private final NewsService newsService;
+
+    public NewsResource(NewsService newsService ){
+        this.newsService = newsService;
+    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<News> findOne(@PathVariable("id") String id){

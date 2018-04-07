@@ -14,16 +14,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import spring.learning.cms.domain.models.User;
+import spring.learning.cms.domain.service.UserService;
 import spring.learning.cms.domain.vo.NewsRequest;
+import spring.learning.cms.domain.vo.UserRequest;
 
 
 @RestController
 @RequestMapping("/api/user")
 public class UserResource {
+    private final UserService userService;
+
+    public UserResource(UserService userService){
+        this.userService = userService;
+    }
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<User> findOne(@PathVariable("id") String id){
-        return ResponseEntity.ok(new User());
+        return ResponseEntity.ok(this.userService.findOne(id));
     }
 
     @GetMapping
@@ -32,7 +39,7 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<User> newUser(NewsRequest news){
+    public ResponseEntity<User> newUser(UserRequest user){
         return new ResponseEntity<>(new User(), HttpStatus.CREATED);
     }
 
@@ -42,7 +49,7 @@ public class UserResource {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable("id") String id,NewsRequest news){
+    public ResponseEntity<User> updateUser(@PathVariable("id") String id,UserRequest users){
         return new ResponseEntity<>(new User(), HttpStatus.OK);
     }
 
